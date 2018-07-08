@@ -11,8 +11,8 @@ The code is implemented using the Pytorch library with Python 2.7 and has been t
 
 [PIPA-relation](https://www.mpi-inf.mpg.de/departments/computer-vision-and-multimodal-computing/research/human-activity-recognition/social-relation-recognition/) was released by [[Sun et al. CVPR 2017](https://arxiv.org/abs/1704.06456)]. It covers 5 social domains, which can be further divided into 16 social relationships. On this dataset, we focus on the 16 social relationships.
 
-## Models && object boxes && adjacency matrices
-Trained models, object boxes and ajacency matrices are available in [baidu cloud](https://pan.baidu.com/s/13tvWT5FmfvIFaBRE9nq1WQ).
+## Models && objects && adjacency matrices
+Models, objects and ajacency matrices are in [HERE](https://pan.baidu.com/s/13tvWT5FmfvIFaBRE9nq1WQ).
 
 ## Usage
     usage: test.py [-h] [-j N] [-b N] [--print-freq N] [--weights PATH]
@@ -25,7 +25,7 @@ Trained models, object boxes and ajacency matrices are available in [baidu cloud
 
     positional arguments:
       DIR                       path to dataset
-      DIR                       path to feature (bbox of contextural)
+      DIR                       path to objects (bboxes and categories of objects)
       DIR                       path to test list
 
     optional arguments:
