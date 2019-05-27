@@ -56,7 +56,7 @@ class GRM(nn.Module):
 
 		start_idx = 0
 		end_idx = 0
-
+		#
 		for b in range(batch_size):
 			cur_rois_num = categories[b, 0].data[0]
 			end_idx += cur_rois_num
