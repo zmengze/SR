@@ -8,6 +8,7 @@ from resnet_v1 import ResNet, Bottleneck
 class person_pair(nn.Module):
     def __init__(self, num_classes = 3):
         super(person_pair, self).__init__()
+        self.resnet101_global = ResNet(Bottleneck, [3, 4, 23, 3])
         self.resnet101_union = ResNet(Bottleneck, [3, 4, 23, 3])
         self.resnet101_a = ResNet(Bottleneck, [3, 4, 23, 3])
         self.resnet101_b = self.resnet101_a
@@ -21,13 +22,14 @@ class person_pair(nn.Module):
         self._initialize_weights()
 
     # x1 = union, x2 = object1, x3 = object2, x4 = bbox geometric info
-    def forward(self, x1, x2, x3, x4): 
+    def forward(self, x0, x1, x2, x3, x4): 
+        x0 = self.resnet101_global(x1)
         x1 = self.resnet101_union(x1)
         x2 = self.resnet101_a(x2)
         x3 = self.resnet101_b(x3)
         x4 = self.bboxes(x4)
 
-        x = torch.cat((x4, x1, x2, x3), 1)
+        x = torch.cat((x4, x0, x1, x2, x3), 1)
         x = self.Dropout(x)
         fc6 = self.fc6(x)
         x = self.ReLU(fc6)
